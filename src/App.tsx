@@ -13,6 +13,10 @@ enum ModeEnum {
 function App() {
   const [mode, setMode] = useState<ModeEnum>(ModeEnum.Clock);
 
+  const changeMode = (newMode: ModeEnum) => {
+    setMode(newMode);
+  };
+
   const getModeContent = () => {
     switch (mode) {
       case ModeEnum.StopWatch:
@@ -24,17 +28,30 @@ function App() {
     }
   };
 
-  
-
   return (
     <div className="App">
       <header className="header">
-        <img src="/clock-svgrepo-com.svg" alt="Clock" className="active" />
-        <img src="/stopwatch-svgrepo-com.svg" alt="Stop_Watch" />
-        <img src="/timer-svgrepo-com.svg" alt="Timer" />
+        <img
+          src="/clock-svgrepo-com.svg"
+          alt="Clock"
+          className={mode === ModeEnum.Clock ? 'active' : undefined}
+          onClick={() => changeMode(ModeEnum.Clock)}
+        />
+        <img
+          src="/stopwatch-svgrepo-com.svg"
+          alt="Stop_Watch"
+          className={mode === ModeEnum.StopWatch ? 'active' : undefined}
+          onClick={() => changeMode(ModeEnum.StopWatch)}
+        />
+        <img
+          src="/timer-svgrepo-com.svg"
+          alt="Timer"
+          className={mode === ModeEnum.Timer ? 'active' : undefined}
+          onClick={() => changeMode(ModeEnum.Timer)}
+        />
       </header>
 
-      {getModeContent()}
+      <div className="main">{getModeContent()}</div>
     </div>
   );
 }

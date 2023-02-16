@@ -12,7 +12,7 @@ export default function Clock() {
   }, []);
 
   return (
-    <div>
+    <div className='clock-container'>
       <h1>{clockValue.toLocaleTimeString()}</h1>
       <p>{clockValue.toLocaleDateString()}</p>
     </div>

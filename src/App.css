@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   height: 100vh;
   background: #323232;
   color: #fff;
@@ -14,21 +13,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 6rem;
+  padding: 1rem 0;
 }
 
 .header img {
   width: 3rem;
+  transition: width 0.2s ease-in;
 }
 
 .header img.active {
   width: 6rem;
+  transition: width 0.2s ease-out;
+  animation: activeMode 0.2s linear reverse forwards;
 }
 
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.main .clock-container {
+  width: 20rem;
+  margin: auto;
+}
+
+@keyframes activeMode {
+  0% {
+    transform: scale(1);
   }
-  to {
-    transform: rotate(360deg);
+  80% {
+    transform: scale(1.5);
   }
-} */
+  100% {
+    transform: scale(1);
+  }
+}
