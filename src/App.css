@@ -1,7 +1,7 @@
 .App {
   height: 100vh;
   background: #323232;
-  color: #fff;
+  color: #ffffff;
 }
 
 .App h1 {
@@ -33,9 +33,67 @@
   margin: auto;
 }
 
-.main .clock-container, .stopwatch-container {
+.main .clock-container,
+.stopwatch-container {
   width: 20rem;
   margin: auto;
+}
+
+.main ul.cycles {
+  list-style-type: none;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+}
+
+.main ul.cycles.not-empty {
+  animation: showList 0.6s ease-in-out forwards;
+}
+@keyframes showList {
+  0% {
+    min-height: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
+  90% {
+    min-height: 12.3rem;
+    max-height: 12.3rem;
+    overflow: hidden;
+  }
+  100% {
+    min-height: 12.3rem;
+    max-height: 12.3rem;
+    overflow: auto;
+  }
+}
+
+.main ul.cycles.empty {
+  animation: hideList 0.6s ease-in-out forwards;
+}
+@keyframes hideList {
+  0% {
+    min-height: 12.3rem;
+    overflow: auto;
+  }
+  100% {
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+.main ul.cycles .cycle-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  animation: addCycle 0.4s ease-out forwards;
+}
+
+.main ul.cycles .cycle-data .aux-info {
+  color: #b0b0b0;
+}
+
+.main ul.cycles .cycle-data img {
+  width: 1rem;
 }
 
 .main .actions {
@@ -76,7 +134,6 @@
   animation: pause 0.2s ease;
 }
 
-
 @keyframes activeMode {
   0% {
     transform: scale(1);
@@ -108,5 +165,20 @@
   to {
     opacity: 1;
     transform: rotate(0deg);
+  }
+}
+
+@keyframes addCycle {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

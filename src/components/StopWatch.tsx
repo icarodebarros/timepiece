@@ -4,6 +4,7 @@ export default function StopWatch() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [cycles, setCycles] = useState<number[]>([]);
+  const [showBtnAnimation, setShowBtnAnimation] = useState<boolean>(false);
 
   useEffect(() => {
     let interval: NodeJS.Timer | undefined;
@@ -18,13 +19,14 @@ export default function StopWatch() {
   }, [isRunning]);
 
   const onFlagStopClick = () => {
+    setShowBtnAnimation(true);
     if (!isRunning) {
       // stop button
       setTime(0);
       setCycles([]);
     } else {
       // flag button
-      setCycles((list) => [...list, time]);
+      setCycles((list) => [time, ...list]);
     }
   };
 
@@ -42,9 +44,24 @@ export default function StopWatch() {
     <div className="stopwatch-container">
       <h1>{getTimeDisplay(time)}</h1>
 
-      <ul className="cycles">
-        {cycles.map((cycle: number) => (
-          <li key={cycle.toString()}>{getTimeDisplay(cycle)}</li>
+      <ul
+        className={`cycles ${
+          showBtnAnimation ? (cycles.length ? 'not-empty' : 'empty') : ''
+        }`}
+      >
+        {cycles.map((cycle: number, i: number) => (
+          <li key={cycle.toString()}>
+            <div className="cycle-data">
+              <span className="aux-info">
+                <img src="/flag-3-svgrepo-com.svg" alt="flag icon"></img>
+                {' ' + ('0' + (cycles.length - i)).slice(-2)}
+              </span>
+              <span className="aux-info">
+                + {getTimeDisplay(cycle - (cycles[i + 1] | 0))}
+              </span>
+              <span>{getTimeDisplay(cycle)}</span>
+            </div>
+          </li>
         ))}
       </ul>
 
