@@ -43,6 +43,7 @@
   align-items: center;
   justify-content: center;
   margin: 1rem 0;
+  gap: 1rem;
 }
 
 .main .actions button {
@@ -62,6 +63,16 @@
 
 .main .actions button.pause {
   background-image: url('/public/pause-svgrepo-com.svg');
+  animation: pause 0.2s ease;
+}
+
+.main .actions button.flag {
+  background-image: url('/public/flag-3-svgrepo-com.svg');
+  animation: play 0.2s ease;
+}
+
+.main .actions button.stop {
+  background-image: url('/public/stop-svgrepo-com.svg');
   animation: pause 0.2s ease;
 }
 
