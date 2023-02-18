@@ -28,6 +28,19 @@
   animation: activeMode 0.2s linear reverse forwards;
 }
 
+@keyframes activeMode {
+  0% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
 .main {
   width: 80vw;
   margin: auto;
@@ -88,6 +101,22 @@
   animation: addCycle 0.4s ease-out forwards;
 }
 
+@keyframes addCycle {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
 .main ul.cycles .cycle-data .aux-info {
   color: #b0b0b0;
 }
@@ -116,69 +145,46 @@
 
 .main .actions button.play {
   background-image: url('/public/play-svgrepo-com.svg');
-  animation: play 0.2s ease;
+  animation: btn1 0.3s ease;
 }
 
 .main .actions button.pause {
   background-image: url('/public/pause-svgrepo-com.svg');
-  animation: pause 0.2s ease;
+  animation: btn2 0.3s ease;
 }
 
 .main .actions button.flag {
   background-image: url('/public/flag-3-svgrepo-com.svg');
-  animation: play 0.2s ease;
+  animation: btn1 0.3s ease;
 }
 
 .main .actions button.stop {
   background-image: url('/public/stop-svgrepo-com.svg');
-  animation: pause 0.2s ease;
+  animation: btn2 0.3s ease;
 }
 
-@keyframes activeMode {
-  0% {
-    transform: scale(1);
-  }
-  80% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes play {
+@keyframes btn1 {
   from {
-    opacity: 0.5;
-    transform: rotate(-90deg);
+    opacity: 0.1;
+    /* transform: rotate(-90deg); */
+    transform: translateX(-30%);
   }
   to {
     opacity: 1;
-    transform: rotate(0deg);
+    /* transform: rotate(0deg); */
+    transform: translateX(0);
   }
 }
 
-@keyframes pause {
+@keyframes btn2 {
   from {
-    opacity: 0.5;
-    transform: rotate(90deg);
+    opacity: 0.1;
+    /* transform: rotate(90deg); */
+    transform: translateX(30%);
   }
   to {
     opacity: 1;
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes addCycle {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(10%);
-  }
-  100% {
-    opacity: 1;
+    /* transform: rotate(0deg); */
     transform: translateX(0);
   }
 }

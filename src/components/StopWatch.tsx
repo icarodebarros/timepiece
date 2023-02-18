@@ -19,13 +19,13 @@ export default function StopWatch() {
   }, [isRunning]);
 
   const onFlagStopClick = () => {
-    setShowBtnAnimation(true);
     if (!isRunning) {
       // stop button
       setTime(0);
       setCycles([]);
     } else {
       // flag button
+      setShowBtnAnimation(true);
       setCycles((list) => [time, ...list]);
     }
   };
