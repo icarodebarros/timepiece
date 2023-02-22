@@ -47,7 +47,8 @@
 }
 
 .main .clock-container,
-.stopwatch-container {
+.stopwatch-container,
+.timer-container {
   width: 20rem;
   margin: auto;
 }
@@ -56,6 +57,18 @@
   list-style-type: none;
   padding: 0.5rem 0;
   margin: 0.5rem 0;
+  overflow: auto;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.main ul.cycles::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.main ul.cycles {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .main ul.cycles.not-empty {
@@ -65,17 +78,10 @@
   0% {
     min-height: 0;
     max-height: 0;
-    overflow: hidden;
-  }
-  90% {
-    min-height: 12.3rem;
-    max-height: 12.3rem;
-    overflow: hidden;
   }
   100% {
     min-height: 12.3rem;
     max-height: 12.3rem;
-    overflow: auto;
   }
 }
 
@@ -85,11 +91,9 @@
 @keyframes hideList {
   0% {
     min-height: 12.3rem;
-    overflow: auto;
   }
   100% {
     min-height: 0;
-    overflow: hidden;
   }
 }
 
@@ -138,9 +142,15 @@
   background-size: 3rem;
   background-repeat: no-repeat;
   border-radius: 10px;
+  border: 2px solid #FFFFFF;
   cursor: pointer;
   width: 3.1rem;
   height: 3.2rem;
+}
+
+.main .actions button.play:disabled {
+  cursor: not-allowed;
+  filter: invert(0.5);
 }
 
 .main .actions button.play {
@@ -186,5 +196,69 @@
     opacity: 1;
     /* transform: rotate(0deg); */
     transform: translateX(0);
+  }
+}
+
+.main .set-timer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  /* margin-bottom: 2.1rem; */
+}
+
+.main .set-timer label {
+  display: block;
+}
+
+.main .set-timer input {
+  width: 5.5rem;
+  line-height: 5rem;
+  border-radius: 10px;
+  font-size: 4rem;
+  background-color: #323232;
+  color: #FFFFFF;
+}
+
+.main .set-timer input::placeholder {
+  color: #FFFFFF;
+}
+
+.main .message-container {
+  min-height: 1.5rem;
+}
+
+.main .message {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 3rem;
+  animation: showMessage 0.4s ease-in; 
+}
+
+.main .message.msg-hide {
+  animation: hideMessage 0.4s ease-in; 
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+}
+
+@keyframes showMessage {
+  from {
+    opacity: 0;
+    transform: translateY(60%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes hideMessage {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(60%);    
   }
 }
