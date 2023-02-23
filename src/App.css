@@ -47,13 +47,24 @@
 }
 
 .main .clock-container,
-.stopwatch-container,
-.timer-container {
+.main .stopwatch-container,
+.main .timer-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   width: 20rem;
   margin: auto;
+  animation: changeMode 0.2s linear;
+}
+
+@keyframes changeMode {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .main ul.cycles {
