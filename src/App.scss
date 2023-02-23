@@ -1,7 +1,9 @@
+@use './styles/variables.scss';
+
 .App {
   height: 100vh;
-  background: #323232;
-  color: #ffffff;
+  background: variables.$background-color;
+  color: variables.$base-color;
 }
 
 .App h1 {
@@ -24,12 +26,12 @@
 }
 
 .App .header img:hover {
-  filter: invert(45%) sepia(90%) saturate(1.5) hue-rotate(190deg); /* #97a7e0 */
+  filter: variables.$svg-filter-color-hover;
 }
 
 .App .header img.active {
   width: 6rem;
-  filter: invert(45%) sepia(90%) saturate(4.5) hue-rotate(190deg); /* #77a5ff */
+  filter: variables.$svg-filter-color-active;
   transition: width 0.2s ease-out;
   animation: activeMode 0.2s linear reverse forwards;
 }
@@ -142,7 +144,7 @@
 
 
 .main ul.cycles .cycle-data .aux-info {
-  color: #b0b0b0;
+  color: variables.$lowlight-color;
 }
 
 .main ul.cycles .cycle-data img {
@@ -162,14 +164,14 @@
   background-size: 3rem;
   background-repeat: no-repeat;
   border-radius: 10px;
-  border: 2px solid #FFFFFF;
+  border: 2px solid variables.$base-color;
   cursor: pointer;
   width: 3.2rem;
   height: 3.2rem;
 }
 
 .main .actions button:hover {
-  filter: invert(45%) sepia(90%) saturate(1.5) hue-rotate(190deg); /* #97a7e0 */
+  filter: variables.$svg-filter-color-hover;
 }
 
 .main .actions button.play:disabled {
@@ -178,19 +180,19 @@
 }
 
 .main .actions button.play {
-  background-image: url('/public/play-svgrepo-com.svg'); 
+  background-image: url('../public/play-svgrepo-com.svg'); 
 }
 
 .main .actions button.pause {
-  background-image: url('/public/pause-svgrepo-com.svg');
+  background-image: url('../public/pause-svgrepo-com.svg');
 }
 
 .main .actions button.flag {
-  background-image: url('/public/flag-3-svgrepo-com.svg');
+  background-image: url('../public/flag-3-svgrepo-com.svg');
 }
 
 .main .actions button.stop {
-  background-image: url('/public/stop-svgrepo-com.svg');
+  background-image: url('../public/stop-svgrepo-com.svg');
 }
 
 .main .actions button.anm-left {
@@ -247,15 +249,16 @@
   width: 5.6rem;
   line-height: 5rem;
   border-radius: 10px;
+  border-style: outset;
   font-size: 4.2rem;
-  background-color: #323232;
-  color: #FFFFFF;
+  background-color: variables.$background-color;
+  color: variables.$base-color;
   margin: 0.2rem 0;
   padding: 0;
 }
 
 .main .set-timer input::placeholder {
-  color: #FFFFFF;
+  color: variables.$base-color;
 }
 
 .main .message-container.not-empty {
