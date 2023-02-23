@@ -5,11 +5,6 @@
   background: variables.$background-color;
   color: variables.$base-color;
 
-  h1 {
-    margin: 0;
-    font-size: 5rem;
-  }
-
   .header {
     display: flex;
     justify-content: center;
@@ -48,6 +43,12 @@
       width: 20rem;
       margin: auto;
       animation: changeMode 0.2s linear;
+
+      h1 {
+        margin: 0;
+        font-size: 5rem;
+        align-self: flex-start;
+      }
     }
 
     .actions {
