@@ -4,36 +4,104 @@
   height: 100vh;
   background: variables.$background-color;
   color: variables.$base-color;
-}
 
-.App h1 {
-  margin: 0;
-  font-size: 5rem;
-}
+  h1 {
+    margin: 0;
+    font-size: 5rem;
+  }
 
-.App .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 6rem;
-  padding: 1rem 0;
-}
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6rem;
+    padding: 1rem 0;
 
-.App .header img {
-  width: 3rem;
-  transition: width 0.2s ease-in;
-  cursor: pointer;
-}
+    img {
+      width: 3rem;
+      transition: width 0.2s ease-in;
+      cursor: pointer;
 
-.App .header img:hover {
-  filter: variables.$svg-filter-color-hover;
-}
+      &:hover {
+        filter: variables.$svg-filter-color-hover;
+      }
 
-.App .header img.active {
-  width: 6rem;
-  filter: variables.$svg-filter-color-active;
-  transition: width 0.2s ease-out;
-  animation: activeMode 0.2s linear reverse forwards;
+      &.active {
+        width: 6rem;
+        filter: variables.$svg-filter-color-active;
+        transition: width 0.2s ease-out;
+        animation: activeMode 0.2s linear reverse forwards;
+      }
+    }
+  }
+
+  .main {
+    width: 80vw;
+    margin: 2rem auto;
+
+    .clock-container,
+    .stopwatch-container,
+    .timer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 20rem;
+      margin: auto;
+      animation: changeMode 0.2s linear;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem 0;
+      gap: 1rem;
+
+      button {
+        background-color: unset;
+        background-size: 3rem;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+        border: 2px solid variables.$base-color;
+        cursor: pointer;
+        width: 3.2rem;
+        height: 3.2rem;
+
+        &:hover {
+          filter: variables.$svg-filter-color-hover;
+        }
+
+        &.play:disabled {
+          cursor: not-allowed;
+          filter: invert(0.5);
+        }
+
+        &.play {
+          background-image: url('../public/play-svgrepo-com.svg');
+        }
+
+        &.pause {
+          background-image: url('../public/pause-svgrepo-com.svg');
+        }
+
+        &.flag {
+          background-image: url('../public/flag-3-svgrepo-com.svg');
+        }
+
+        &.stop {
+          background-image: url('../public/stop-svgrepo-com.svg');
+        }
+
+        &.anm-left {
+          animation: anm-left 0.2s ease;
+        }
+
+        &.anm-right {
+          animation: anm-right 0.2s ease;
+        }
+      }
+    }
+  }
 }
 
 @keyframes activeMode {
@@ -48,23 +116,6 @@
   }
 }
 
-
-.main {
-  width: 80vw;
-  margin: 2rem auto;
-}
-
-.main .clock-container,
-.main .stopwatch-container,
-.main .timer-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 20rem;
-  margin: auto;
-  animation: changeMode 0.2s linear;
-}
-
 @keyframes changeMode {
   0% {
     opacity: 0;
@@ -75,143 +126,13 @@
   }
 }
 
-.main ul.cycles {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  overflow: auto;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.main ul.cycles::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.main ul.cycles {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-.main ul.cycles.not-empty {
-  animation: showList 0.6s ease-in-out forwards;
-}
-@keyframes showList {
-  0% {
-    min-height: 0;
-    max-height: 0;
-  }
-  100% {
-    min-height: 12.3rem;
-    max-height: 12.3rem;
-  }
-}
-
-.main ul.cycles.empty {
-  animation: hideList 0.6s ease-in-out forwards;
-}
-@keyframes hideList {
-  0% {
-    min-height: 12.3rem;
-  }
-  100% {
-    min-height: 0;
-  }
-}
-
-.main ul.cycles .cycle-data {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 1rem 0;
-  animation: addCycle 0.4s ease-out forwards;
-}
-
-@keyframes addCycle {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%);
-  }
-  70% {
-    opacity: 1;
-    transform: translateX(10%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-
-.main ul.cycles .cycle-data .aux-info {
-  color: variables.$lowlight-color;
-}
-
-.main ul.cycles .cycle-data img {
-  width: 1rem;
-}
-
-.main .actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem 0;
-  gap: 1rem;
-}
-
-.main .actions button {
-  background-color: unset;
-  background-size: 3rem;
-  background-repeat: no-repeat;
-  border-radius: 10px;
-  border: 2px solid variables.$base-color;
-  cursor: pointer;
-  width: 3.2rem;
-  height: 3.2rem;
-}
-
-.main .actions button:hover {
-  filter: variables.$svg-filter-color-hover;
-}
-
-.main .actions button.play:disabled {
-  cursor: not-allowed;
-  filter: invert(0.5);
-}
-
-.main .actions button.play {
-  background-image: url('../public/play-svgrepo-com.svg'); 
-}
-
-.main .actions button.pause {
-  background-image: url('../public/pause-svgrepo-com.svg');
-}
-
-.main .actions button.flag {
-  background-image: url('../public/flag-3-svgrepo-com.svg');
-}
-
-.main .actions button.stop {
-  background-image: url('../public/stop-svgrepo-com.svg');
-}
-
-.main .actions button.anm-left {
-  animation: anm-left 0.2s ease;
-}
-
-.main .actions button.anm-right {
-  animation: anm-right 0.2s ease;
-}
-
 @keyframes anm-left {
   from {
     opacity: 0;
-    /* transform: rotate(-90deg); */
     transform: translateX(-30%);
   }
   to {
     opacity: 1;
-    /* transform: rotate(0deg); */
     transform: translateX(0);
   }
 }
@@ -219,106 +140,10 @@
 @keyframes anm-right {
   from {
     opacity: 0;
-    /* transform: rotate(90deg); */
     transform: translateX(30%);
   }
   to {
     opacity: 1;
-    /* transform: rotate(0deg); */
     transform: translateX(0);
-  }
-}
-
-.main .set-timer {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  /* margin-bottom: 2.1rem; */
-}
-
-.main .set-timer > div {
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-.main .set-timer label {
-  display: block;
-}
-
-.main .set-timer input {
-  width: 5.6rem;
-  line-height: 5rem;
-  border-radius: 10px;
-  border-style: outset;
-  font-size: 4.2rem;
-  background-color: variables.$background-color;
-  color: variables.$base-color;
-  margin: 0.2rem 0;
-  padding: 0;
-}
-
-.main .set-timer input::placeholder {
-  color: variables.$base-color;
-}
-
-.main .message-container.not-empty {
-  animation: showMsgContainer 0.6s ease-in-out forwards;
-}
-@keyframes showMsgContainer {
-  0% {
-    min-height: 0;
-    max-height: 0;
-  }
-  100% {
-    min-height: 8rem;
-    max-height: 8rem;
-  }
-}
-
-.main .message-container.empty {
-  animation: hideMsgContainer 0.6s ease-in-out forwards;
-}
-@keyframes hideMsgContainer {
-  0% {
-    min-height: 8rem;
-  }
-  100% {
-    min-height: 0;
-  }
-}
-
-.main .message {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  border: 1px solid white;
-  border-radius: 10px;
-  padding: 1rem;
-  margin: 2rem 0;
-  animation: showMessage 0.4s ease-in; 
-}
-
-.main .message.msg-hide {
-  animation: hideMessage 0.4s ease-in; 
-  opacity: 0;
-  transition: opacity 0.4s ease-in;
-}
-
-@keyframes showMessage {
-  from {
-    opacity: 0;
-    transform: translateY(-60%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes hideMessage {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-60%);   
   }
 }

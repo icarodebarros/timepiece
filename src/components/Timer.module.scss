@@ -1,0 +1,111 @@
+@use '../styles/variables.scss';
+
+.setTimer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+
+  & > div {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  label {
+    display: block;
+  }
+
+  input {
+    width: 5.6rem;
+    line-height: 5rem;
+    border-radius: 10px;
+    border-style: outset;
+    font-size: 4.2rem;
+    background-color: variables.$background-color;
+    color: variables.$base-color;
+    margin: 0.2rem 0;
+    padding: 0;
+
+    &::placeholder {
+      color: variables.$base-color;
+    }
+  }
+}
+
+h1.display {
+  animation: changeDisplay 0.2s linear;
+}
+
+.messageContainer {
+  &.notEmpty {
+    animation: showMsgContainer 0.6s ease-in-out forwards;
+  }
+  &.empty {
+    animation: hideMsgContainer 0.6s ease-in-out forwards;
+  }
+}
+
+.message {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 2rem 0;
+  animation: showMessage 0.4s ease-in;
+
+  &.msgHide {
+    animation: hideMessage 0.4s ease-in;
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+  }
+}
+
+@keyframes changeDisplay {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes showMsgContainer {
+  0% {
+    min-height: 0;
+    max-height: 0;
+  }
+  100% {
+    min-height: 8rem;
+    max-height: 8rem;
+  }
+}
+
+@keyframes hideMsgContainer {
+  0% {
+    min-height: 8rem;
+  }
+  100% {
+    min-height: 0;
+  }
+}
+
+@keyframes showMessage {
+  from {
+    opacity: 0;
+    transform: translateY(-60%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes hideMessage {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-60%);
+  }
+}

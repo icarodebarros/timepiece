@@ -1,5 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 
+import styles from './StopWatch.module.scss';
+
 export default function StopWatch() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -45,18 +47,18 @@ export default function StopWatch() {
       <h1>{getTimeDisplay(time)}</h1>
 
       <ul
-        className={`cycles ${
-          showBtnAnimation ? (cycles.length ? 'not-empty' : 'empty') : ''
+        className={`${styles.cycles} ${
+          showBtnAnimation ? (cycles.length ? styles.notEmpty : styles.empty) : ''
         }`}
       >
         {cycles.map((cycle: number, i: number) => (
           <li key={cycle.toString()}>
-            <div className="cycle-data">
-              <span className="aux-info">
+            <div className={styles.cycleData}>
+              <span className={styles.auxInfo}>
                 <img src="/flag-3-svgrepo-com.svg" alt="flag icon"></img>
                 {' ' + ('0' + (cycles.length - i)).slice(-2)}
               </span>
-              <span className="aux-info">
+              <span className={styles.auxInfo}>
                 + {getTimeDisplay(cycle - (cycles[i + 1] | 0))}
               </span>
               <span>{getTimeDisplay(cycle)}</span>

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import styles from './Timer.module.scss';
+
 export default function Timer() {
   const hourRef = useRef<HTMLInputElement | null>(null);
   const minRef = useRef<HTMLInputElement | null>(null);
@@ -61,7 +63,7 @@ export default function Timer() {
   return (
     <div className="timer-container">
       {!time ? (
-        <div className="set-timer">
+        <div className={styles.setTimer}>
           <div>
             <label htmlFor="hr">h</label>
             <input
@@ -100,7 +102,7 @@ export default function Timer() {
           </div>
         </div>
       ) : (
-        <h1>
+        <h1 className={styles.display}>
           <span>{('0' + Math.floor(time / 3600)).slice(-2)}:</span>
           <span>{('0' + Math.floor((time / 60) % 60)).slice(-2)}:</span>
           <span>{('0' + (time % 60)).slice(-2)}</span>
@@ -108,16 +110,18 @@ export default function Timer() {
       )}
 
       <div
-        className={`message-container ${
+        className={`${styles.messageContainer} ${
           showTimeIsOver !== null
             ? !!showTimeIsOver
-              ? 'not-empty'
-              : 'empty'
+              ? styles.notEmpty
+              : styles.empty
             : ''
         }`}
       >
         {showTimeIsOver && (
-          <div className={`message ${isTimeValid ? 'msg-hide' : ''}`}>
+          <div
+            className={`${styles.message} ${isTimeValid ? styles.msgHide : ''}`}
+          >
             The time is over!
           </div>
         )}
@@ -126,10 +130,12 @@ export default function Timer() {
       <div className="actions">
         <button
           onClick={() => setIsRunning((curValue) => !curValue)}
-          className={isRunning ? 'pause' : 'play'}
+          className={isRunning ? 'pause anm-right' : 'play'}
           disabled={!isTimeValid}
         ></button>
-        {!!time && <button onClick={stopTimer} className="stop"></button>}
+        {!!time && (
+          <button onClick={stopTimer} className="stop anm-left"></button>
+        )}
       </div>
     </div>
   );
