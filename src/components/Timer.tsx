@@ -69,7 +69,8 @@ export default function Timer() {
               id="hr"
               ref={hourRef}
               placeholder="00"
-              min={0}
+              min="0"
+              max="99"
               onChange={onChangeTimeInput}
             />
           </div>
@@ -80,7 +81,8 @@ export default function Timer() {
               id="min"
               ref={minRef}
               placeholder="00"
-              min={0}
+              min="0"
+              max="99"
               onChange={onChangeTimeInput}
             />
           </div>
@@ -91,7 +93,8 @@ export default function Timer() {
               id="sec"
               ref={secRef}
               placeholder="00"
-              min={0}
+              min="0"
+              max="99"
               onChange={onChangeTimeInput}
             />
           </div>

@@ -9,7 +9,7 @@
   font-size: 5rem;
 }
 
-.header {
+.App .header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,13 +17,19 @@
   padding: 1rem 0;
 }
 
-.header img {
+.App .header img {
   width: 3rem;
   transition: width 0.2s ease-in;
+  cursor: pointer;
 }
 
-.header img.active {
+.App .header img:hover {
+  filter: invert(45%) sepia(90%) saturate(1.5) hue-rotate(190deg); /* #97a7e0 */
+}
+
+.App .header img.active {
   width: 6rem;
+  filter: invert(45%) sepia(90%) saturate(4.5) hue-rotate(190deg); /* #77a5ff */
   transition: width 0.2s ease-out;
   animation: activeMode 0.2s linear reverse forwards;
 }
@@ -162,13 +168,17 @@
   height: 3.2rem;
 }
 
+.main .actions button:hover {
+  filter: invert(45%) sepia(90%) saturate(1.5) hue-rotate(190deg); /* #97a7e0 */
+}
+
 .main .actions button.play:disabled {
   cursor: not-allowed;
   filter: invert(0.5);
 }
 
 .main .actions button.play {
-  background-image: url('/public/play-svgrepo-com.svg');
+  background-image: url('/public/play-svgrepo-com.svg'); 
 }
 
 .main .actions button.pause {
