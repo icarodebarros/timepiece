@@ -32,8 +32,8 @@
   0% {
     transform: scale(1);
   }
-  80% {
-    transform: scale(1.5);
+  70% {
+    transform: scale(1.2);
   }
   100% {
     transform: scale(1);
@@ -43,20 +43,23 @@
 
 .main {
   width: 80vw;
-  margin: auto;
+  margin: 2rem auto;
 }
 
 .main .clock-container,
 .stopwatch-container,
 .timer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   width: 20rem;
   margin: auto;
 }
 
 .main ul.cycles {
   list-style-type: none;
-  padding: 0.5rem 0;
-  margin: 0.5rem 0;
+  padding: 0;
+  margin: 0;
   overflow: auto;
 }
 
@@ -110,7 +113,7 @@
     opacity: 0;
     transform: translateX(-50%);
   }
-  50% {
+  70% {
     opacity: 1;
     transform: translateX(10%);
   }
@@ -144,7 +147,7 @@
   border-radius: 10px;
   border: 2px solid #FFFFFF;
   cursor: pointer;
-  width: 3.1rem;
+  width: 3.2rem;
   height: 3.2rem;
 }
 
@@ -155,27 +158,31 @@
 
 .main .actions button.play {
   background-image: url('/public/play-svgrepo-com.svg');
-  animation: btn1 0.3s ease;
 }
 
 .main .actions button.pause {
   background-image: url('/public/pause-svgrepo-com.svg');
-  animation: btn2 0.3s ease;
 }
 
 .main .actions button.flag {
   background-image: url('/public/flag-3-svgrepo-com.svg');
-  animation: btn1 0.3s ease;
 }
 
 .main .actions button.stop {
   background-image: url('/public/stop-svgrepo-com.svg');
-  animation: btn2 0.3s ease;
 }
 
-@keyframes btn1 {
+.main .actions button.anm-left {
+  animation: anm-left 0.2s ease;
+}
+
+.main .actions button.anm-right {
+  animation: anm-right 0.2s ease;
+}
+
+@keyframes anm-left {
   from {
-    opacity: 0.1;
+    opacity: 0;
     /* transform: rotate(-90deg); */
     transform: translateX(-30%);
   }
@@ -186,9 +193,9 @@
   }
 }
 
-@keyframes btn2 {
+@keyframes anm-right {
   from {
-    opacity: 0.1;
+    opacity: 0;
     /* transform: rotate(90deg); */
     transform: translateX(30%);
   }
@@ -206,25 +213,54 @@
   /* margin-bottom: 2.1rem; */
 }
 
+.main .set-timer > div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .main .set-timer label {
   display: block;
 }
 
 .main .set-timer input {
-  width: 5.5rem;
+  width: 5.6rem;
   line-height: 5rem;
   border-radius: 10px;
-  font-size: 4rem;
+  font-size: 4.2rem;
   background-color: #323232;
   color: #FFFFFF;
+  margin: 0.2rem 0;
+  padding: 0;
 }
 
 .main .set-timer input::placeholder {
   color: #FFFFFF;
 }
 
-.main .message-container {
-  min-height: 1.5rem;
+.main .message-container.not-empty {
+  animation: showMsgContainer 0.6s ease-in-out forwards;
+}
+@keyframes showMsgContainer {
+  0% {
+    min-height: 0;
+    max-height: 0;
+  }
+  100% {
+    min-height: 8rem;
+    max-height: 8rem;
+  }
+}
+
+.main .message-container.empty {
+  animation: hideMsgContainer 0.6s ease-in-out forwards;
+}
+@keyframes hideMsgContainer {
+  0% {
+    min-height: 8rem;
+  }
+  100% {
+    min-height: 0;
+  }
 }
 
 .main .message {
@@ -234,7 +270,7 @@
   border: 1px solid white;
   border-radius: 10px;
   padding: 1rem;
-  margin-top: 3rem;
+  margin: 2rem 0;
   animation: showMessage 0.4s ease-in; 
 }
 
@@ -247,7 +283,7 @@
 @keyframes showMessage {
   from {
     opacity: 0;
-    transform: translateY(60%);
+    transform: translateY(-60%);
   }
   to {
     transform: translateY(0);
@@ -259,6 +295,6 @@
     transform: translateY(0);
   }
   to {
-    transform: translateY(60%);    
+    transform: translateY(-60%);   
   }
 }

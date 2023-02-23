@@ -68,12 +68,12 @@ export default function StopWatch() {
       <div className="actions">
         <button
           onClick={() => setIsRunning((curValue) => !curValue)}
-          className={isRunning ? 'pause' : 'play'}
+          className={isRunning ? 'pause anm-right' : 'play'}
         ></button>
         {!!time && (
           <button
             onClick={onFlagStopClick}
-            className={isRunning && time ? 'flag' : 'stop'}
+            className={isRunning && time ? 'flag anm-left' : 'stop'}
           ></button>
         )}
       </div>

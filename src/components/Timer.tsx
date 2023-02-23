@@ -8,7 +8,7 @@ export default function Timer() {
   const [time, setTime] = useState(0); // time in seconds
   const [isRunning, setIsRunning] = useState(false);
   const [isTimeValid, setIsTimeValid] = useState(false);
-  const [showTimeIsOver, setShowTimeIsOver] = useState(false);
+  const [showTimeIsOver, setShowTimeIsOver] = useState<boolean | null>(null);
 
   useEffect(() => {
     let interval: NodeJS.Timer | undefined;
@@ -17,7 +17,6 @@ export default function Timer() {
         let timeInput = +(secRef.current?.value || 0);
         timeInput += +(minRef.current?.value || 0) * 60;
         timeInput += +(hourRef.current?.value || 0) * 3600;
-        console.log('time', timeInput);
         if (timeInput) {
           setTime(timeInput);
         } else {
@@ -105,7 +104,15 @@ export default function Timer() {
         </h1>
       )}
 
-      <div className="message-container">
+      <div
+        className={`message-container ${
+          showTimeIsOver !== null
+            ? !!showTimeIsOver
+              ? 'not-empty'
+              : 'empty'
+            : ''
+        }`}
+      >
         {showTimeIsOver && (
           <div className={`message ${isTimeValid ? 'msg-hide' : ''}`}>
             The time is over!
